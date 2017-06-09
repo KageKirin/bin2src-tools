@@ -43,16 +43,28 @@ public:
 
 		bx::writePrintf(m_writer, "const std::string %s =\n", m_name.c_str());
 
-		
+		constexpr size_t maxStringSize = 2040;	// 2048, but leaving a of space
 
 
 		auto it = m_buffer.begin();
-		bx::writePrintf(m_writer, "R\"(");
 		while (it != m_buffer.end())
 		{
-			bx::writePrintf(m_writer, "%c", *it++);
+			bx::writePrintf(m_writer, "std::string(R\"(");
+
+			while (it != m_buffer.end())
+			{
+				bx::writePrintf(m_writer, "%c", *it++);
+
+				if ((std::distance(m_buffer.begin(), it) % maxStringSize) == 0)
+				{
+					break;
+				}
+			}
+
+			bx::writePrintf(m_writer, ")\") +\n");
 		}
-		bx::writePrintf(m_writer, ")\");\n");
+
+		bx::writePrintf(m_writer, "\"\";\n");
 
 
 #undef HEX_DUMP_WIDTH
