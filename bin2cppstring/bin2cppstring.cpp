@@ -1,5 +1,6 @@
 /*
- * Copyright 2011-2017 Branimir Karadzic. All rights reserved.
+ * Copyright 2017 Christian Helmich. All rights reserved.
+ * Based on work by Branimir Karadzic
  * License: https://github.com/bkaradzic/bx#license-bsd-2-clause
  */
 
@@ -90,7 +91,8 @@ void help(const char* _error = NULL)
 
 	fprintf(stderr,
 			"bin2cppstring, binary to C++ std::string\n"
-			"Copyright 2011-2017 Branimir Karadzic. All rights reserved.\n"
+			"Copyright 2017 Christian Helmich. All rights reserved.\n"
+			"Based on work by Branimir Karadzic.\n"
 			"License: https://github.com/bkaradzic/bx#license-bsd-2-clause\n\n");
 
 	fprintf(stderr,
