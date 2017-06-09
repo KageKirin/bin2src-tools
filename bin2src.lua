@@ -100,3 +100,30 @@ project "bin2cppstring"
 	configuration {}
 
 	strip()
+
+---
+
+project "bin2cppu64vec"
+	kind "ConsoleApp"
+
+	includedirs {
+		path.join(BX_DIR, "include"),
+	}
+
+	files {
+		"./bin2cppu64vec/**.cpp",
+		"./bin2cppu64vec/**.h",
+	}
+
+	links {
+		"bx",
+	}
+
+	configuration { "mingw-*" }
+		targetextension ".exe"
+
+	configuration {}
+
+	strip()
+
+---
