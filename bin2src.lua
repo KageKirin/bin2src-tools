@@ -137,6 +137,7 @@ project "bin2c_incbin"
 	kind "ConsoleApp"
 
 	includedirs {
+		boost_includedirs,
 		path.join(BX_DIR, "include"),
 	}
 
@@ -147,6 +148,8 @@ project "bin2c_incbin"
 
 	links {
 		"bx",
+		"boost.system",
+		"boost.filesystem",
 	}
 
 	configuration { "mingw-*" }
@@ -162,6 +165,7 @@ project "bin2cppvec_incbin"
 	kind "ConsoleApp"
 
 	includedirs {
+		boost_includedirs,
 		path.join(BX_DIR, "include"),
 	}
 
@@ -172,6 +176,8 @@ project "bin2cppvec_incbin"
 
 	links {
 		"bx",
+		"boost.system",
+		"boost.filesystem",
 	}
 
 	configuration { "mingw-*" }
@@ -187,6 +193,7 @@ project "bin2cppstring_incbin"
 	kind "ConsoleApp"
 
 	includedirs {
+		boost_includedirs,
 		path.join(BX_DIR, "include"),
 	}
 
@@ -197,6 +204,8 @@ project "bin2cppstring_incbin"
 
 	links {
 		"bx",
+		"boost.system",
+		"boost.filesystem",
 	}
 
 	configuration { "mingw-*" }

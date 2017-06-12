@@ -12,6 +12,8 @@
 #include <bx/crtimpl.h>
 #include <bx/string.h>
 
+#include <boost/filesystem.hpp>
+
 class Bin2CppString_IncBin_Writer : public bx::WriterI
 {
 public:
@@ -51,7 +53,11 @@ public:
 		// bx::writePrintf(m_writer, "// extern const unsigned int g_%s_size;\n", m_name.c_str());
 
 		bx::writePrintf(m_writer, "extern const std::string %s; // for linker happiness\n", m_name.c_str());
-		bx::writePrintf(m_writer, "const std::string %s(g_%s_data, g_%s_end);\n", m_name.c_str(), m_name.c_str(), m_name.c_str());
+		bx::writePrintf(m_writer,
+						"const std::string %s(reinterpret_cast<const char*>(g_%s_data), (size_t)g_%s_end);\n",
+						m_name.c_str(),
+						m_name.c_str(),
+						m_name.c_str());
 		bx::writePrintf(m_writer, "\n");
 	}
 
@@ -117,6 +123,16 @@ int main(int _argc, const char* _argv[])
 		name = "data";
 	}
 
+	namespace fs		   = boost::filesystem;
+	const char* rebasePath = cmdLine.findOption('r');
+	fs::path	relPath(filePath);
+
+	if (NULL != rebasePath)
+	{
+		fs::path rebaseFilePath(rebasePath);
+		relPath = fs::relative(relPath, rebaseFilePath);
+	}
+	filePath = relPath.string().c_str();
 
 	bx::CrtFileWriter fw;
 	if (bx::open(&fw, outFilePath))

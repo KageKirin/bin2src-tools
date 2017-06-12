@@ -12,6 +12,7 @@
 #include <bx/crtimpl.h>
 #include <bx/string.h>
 
+#include <boost/filesystem.hpp>
 
 class Bin2CppString_IncBin_Writer : public bx::WriterI
 {
@@ -120,6 +121,17 @@ int main(int _argc, const char* _argv[])
 	{
 		name = "data";
 	}
+
+	namespace fs		   = boost::filesystem;
+	const char* rebasePath = cmdLine.findOption('r');
+	fs::path	relPath(filePath);
+
+	if (NULL != rebasePath)
+	{
+		fs::path rebaseFilePath(rebasePath);
+		relPath = fs::relative(relPath, rebaseFilePath);
+	}
+	filePath = relPath.string().c_str();
 
 	bx::CrtFileWriter fw;
 	if (bx::open(&fw, outFilePath))
