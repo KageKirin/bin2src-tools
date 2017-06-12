@@ -127,3 +127,83 @@ project "bin2cppu64vec"
 	strip()
 
 ---
+
+
+---
+--- variants relying on incbin to do the embedding
+--- see https://github.com/graphitemaster/incbin
+
+project "bin2c_incbin"
+	kind "ConsoleApp"
+
+	includedirs {
+		path.join(BX_DIR, "include"),
+	}
+
+	files {
+		"./bin2c_incbin/**.cpp",
+		"./bin2c_incbin/**.h",
+	}
+
+	links {
+		"bx",
+	}
+
+	configuration { "mingw-*" }
+		targetextension ".exe"
+
+	configuration {}
+
+	strip()
+
+---
+
+project "bin2cppvec_incbin"
+	kind "ConsoleApp"
+
+	includedirs {
+		path.join(BX_DIR, "include"),
+	}
+
+	files {
+		"./bin2cppvec_incbin/**.cpp",
+		"./bin2cppvec_incbin/**.h",
+	}
+
+	links {
+		"bx",
+	}
+
+	configuration { "mingw-*" }
+		targetextension ".exe"
+
+	configuration {}
+
+	strip()
+
+---
+
+project "bin2cppstring_incbin"
+	kind "ConsoleApp"
+
+	includedirs {
+		path.join(BX_DIR, "include"),
+	}
+
+	files {
+		"./bin2cppstring_incbin/**.cpp",
+		"./bin2cppstring_incbin/**.h",
+	}
+
+	links {
+		"bx",
+	}
+
+	configuration { "mingw-*" }
+		targetextension ".exe"
+
+	configuration {}
+
+	strip()
+
+---
