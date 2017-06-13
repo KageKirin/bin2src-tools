@@ -28,16 +28,16 @@ const char* bin2cppString_srcText = R"(/*
 
 #ifndef _MSC_VER
 
-#ifdef __cplusplus
-{extC_open}
-#endif // __cplusplus
-
 INCBIN({name}, "{file}");
 // This translation unit has now 3 symbols:
 // const unsigned char *g_{name}_data;
 // const unsigned char *g_{name}_end;
 // const unsigned int g_{name}_size;
 
+
+#ifdef __cplusplus
+{extC_open}
+#endif // __cplusplus
 
 extern const std::string {name}; // for linker happiness
 const std::string {name}(
