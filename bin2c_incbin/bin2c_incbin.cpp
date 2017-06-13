@@ -12,49 +12,7 @@
 #include <bx/crtimpl.h>
 #include <bx/string.h>
 
-class Bin2C_IncBin_Writer : public bx::WriterI
-{
-public:
-	Bin2C_IncBin_Writer(bx::WriterI* _writer, const char* _name, const char* _filePath)
-		: m_writer(_writer), m_name(_name), m_filePath(_filePath)
-	{
-	}
-
-	virtual ~Bin2C_IncBin_Writer()
-	{
-	}
-
-	virtual int32_t write(const void* _data, int32_t _size, bx::Error* /*_err*/ = NULL) BX_OVERRIDE
-	{
-		return 0;
-	}
-
-	void finish()
-	{
-		bx::writePrintf(m_writer, "#define INCBIN_PREFIX g_\n");
-		bx::writePrintf(m_writer, "#define INCBIN_STYLE INCBIN_STYLE_SNAKE\n");
-
-		bx::writePrintf(m_writer, "#include <incbin.h>\n\n");
-
-		bx::writePrintf(m_writer, "INCBIN(%s, \"%s\");\n", m_name.c_str(), m_filePath.c_str());
-		bx::writePrintf(m_writer, "// This translation unit now has three symbols\n");
-		bx::writePrintf(m_writer, "// const unsigned char g_%s_data[];\n", m_name.c_str());
-		bx::writePrintf(m_writer, "// const unsigned char *g_%s_end;\n", m_name.c_str());
-		bx::writePrintf(m_writer, "// const unsigned int g_%s_size;\n\n", m_name.c_str());
-
-		bx::writePrintf(m_writer, "// Reference in other translation units like this\n");
-		bx::writePrintf(m_writer, "INCBIN_EXTERN(%s);\n", m_name.c_str());
-		bx::writePrintf(m_writer, "// This translation unit now has three extern symbols\n");
-		bx::writePrintf(m_writer, "// extern const unsigned char g_%s_data[];\n", m_name.c_str());
-		bx::writePrintf(m_writer, "// extern const unsigned char *g_%s_end;\n", m_name.c_str());
-		bx::writePrintf(m_writer, "// extern const unsigned int g_%s_size;\n", m_name.c_str());
-		bx::writePrintf(m_writer, "\n");
-	}
-
-	bx::WriterI* m_writer;
-	std::string  m_name;
-	std::string  m_filePath;
-};
+#include "incbin_c_writer.h"
 
 void help(const char* _error = NULL)
 {
