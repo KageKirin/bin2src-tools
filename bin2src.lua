@@ -7,7 +7,8 @@ project "bin2c"
 	kind "ConsoleApp"
 
 	includedirs {
-		path.join(BX_DIR, "include"),
+		bx_includedirs,
+		fmtlib_includedirs,
 	}
 
 	files {
@@ -17,6 +18,7 @@ project "bin2c"
 
 	links {
 		"bx",
+		"fmtlib",
 	}
 
 	configuration { "mingw-*" }
@@ -32,7 +34,8 @@ project "bin2cpparr"
 	kind "ConsoleApp"
 
 	includedirs {
-		path.join(BX_DIR, "include"),
+		bx_includedirs,
+		fmtlib_includedirs,
 	}
 
 	files {
@@ -42,6 +45,7 @@ project "bin2cpparr"
 
 	links {
 		"bx",
+		"fmtlib",
 	}
 
 	configuration { "mingw-*" }
@@ -57,7 +61,8 @@ project "bin2cppvec"
 	kind "ConsoleApp"
 
 	includedirs {
-		path.join(BX_DIR, "include"),
+		bx_includedirs,
+		fmtlib_includedirs,
 	}
 
 	files {
@@ -67,6 +72,7 @@ project "bin2cppvec"
 
 	links {
 		"bx",
+		"fmtlib",
 	}
 
 	configuration { "mingw-*" }
@@ -82,7 +88,8 @@ project "bin2cppstring"
 	kind "ConsoleApp"
 
 	includedirs {
-		path.join(BX_DIR, "include"),
+		bx_includedirs,
+		fmtlib_includedirs,
 	}
 
 	files {
@@ -92,6 +99,7 @@ project "bin2cppstring"
 
 	links {
 		"bx",
+		"fmtlib",
 	}
 
 	configuration { "mingw-*" }
@@ -107,7 +115,8 @@ project "bin2cppu64vec"
 	kind "ConsoleApp"
 
 	includedirs {
-		path.join(BX_DIR, "include"),
+		bx_includedirs,
+		fmtlib_includedirs,
 	}
 
 	files {
@@ -117,6 +126,7 @@ project "bin2cppu64vec"
 
 	links {
 		"bx",
+		"fmtlib",
 	}
 
 	configuration { "mingw-*" }
@@ -137,16 +147,18 @@ project "bin2c_incbin"
 	kind "ConsoleApp"
 
 	includedirs {
-		path.join(BX_DIR, "include"),
+		bx_includedirs,
+		fmtlib_includedirs,
 	}
 
 	files {
-		"./bin2c_incbin/**.cpp",
+		"./bin2c_incbin/bin2c_incbin.cpp",
 		"./bin2c_incbin/**.h",
 	}
 
 	links {
 		"bx",
+		"fmtlib",
 	}
 
 	configuration { "mingw-*" }
@@ -162,16 +174,18 @@ project "bin2cppvec_incbin"
 	kind "ConsoleApp"
 
 	includedirs {
-		path.join(BX_DIR, "include"),
+		bx_includedirs,
+		fmtlib_includedirs,
 	}
 
 	files {
-		"./bin2cppvec_incbin/**.cpp",
-		"./bin2cppvec_incbin/**.h",
+		"./bin2c_incbin/bin2cppvec_incbin.cpp",
+		"./bin2c_incbin/**.h",
 	}
 
 	links {
 		"bx",
+		"fmtlib",
 	}
 
 	configuration { "mingw-*" }
@@ -187,16 +201,18 @@ project "bin2cppstring_incbin"
 	kind "ConsoleApp"
 
 	includedirs {
-		path.join(BX_DIR, "include"),
+		bx_includedirs,
+		fmtlib_includedirs,
 	}
 
 	files {
-		"./bin2cppstring_incbin/**.cpp",
-		"./bin2cppstring_incbin/**.h",
+		"./bin2c_incbin/bin2cppstring_incbin.cpp",
+		"./bin2c_incbin/**.h",
 	}
 
 	links {
 		"bx",
+		"fmtlib",
 	}
 
 	configuration { "mingw-*" }
