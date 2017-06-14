@@ -26,8 +26,6 @@ const char* bin2cppString_srcText = R"(/*
 #include <incbin.h>
 #include <string>
 
-#ifndef _MSC_VER
-
 INCBIN({name}, "{file}");
 // This translation unit has now 3 symbols:
 // const unsigned char *g_{name}_data;
@@ -49,7 +47,6 @@ const std::string {name}(
 {extC_close}
 #endif // __cplusplus
 
-#endif // ! _MSC_VER
 
 )";
 

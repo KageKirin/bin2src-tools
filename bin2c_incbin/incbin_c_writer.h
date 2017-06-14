@@ -39,7 +39,6 @@ INCBIN({name}, "{file}");
 // const unsigned char *g_{name}_end;
 // const unsigned int g_{name}_size;
 
-
 )";
 
 class Bin2C_IncBin_Writer : public bx::WriterI

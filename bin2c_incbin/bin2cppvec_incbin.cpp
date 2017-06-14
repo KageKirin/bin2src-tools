@@ -28,7 +28,6 @@ const char* bin2cppVec_srcText = R"(/*
 #include <cstdint>
 #include <vector>
 
-#ifndef _MSC_VER
 
 INCBIN({name}, "{file}");
 // This translation unit has now 3 symbols:
@@ -50,8 +49,6 @@ const std::vector<uint8_t> {name}(
 #ifdef __cplusplus
 {extC_close}
 #endif // __cplusplus
-
-#endif // ! _MSC_VER
 
 )";
 
