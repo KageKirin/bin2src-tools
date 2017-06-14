@@ -43,7 +43,7 @@ INCBIN({name}, "{file}");
 extern const std::vector<uint8_t> {name}; // for linker happiness
 const std::vector<uint8_t> {name}(
 	reinterpret_cast<const uint8_t*>(g_{name}_data),
-	reinterpret_cast<const uint8_t*>(g_{name}_end)
+	reinterpret_cast<const uint8_t*>(g_{name}_data) + static_cast<size_t>(g_{name}_size)
 );
 
 #ifdef __cplusplus

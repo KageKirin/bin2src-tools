@@ -40,7 +40,7 @@ INCBIN({name}, "{file}");
 extern const std::string {name}; // for linker happiness
 const std::string {name}(
 	reinterpret_cast<const char*>(g_{name}_data),
-	reinterpret_cast<const char*>(g_{name}_end)
+	static_cast<size_t>(g_{name}_size)
 );
 
 #ifdef __cplusplus
