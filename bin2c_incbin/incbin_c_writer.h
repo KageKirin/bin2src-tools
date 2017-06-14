@@ -26,12 +26,8 @@ const char* bin2c_srcText = R"(/*
 
 #include <incbin.h>
 
-#ifdef __cplusplus
-{extC_open}
-#endif // __cplusplus
-
-// Extern reference first to make linker happy:
-INCBIN_EXTERN({name});
+// Reference from outside using:
+// INCBIN_EXTERN({name});
 // This translation unit has now 3 external symbols:
 // extern const unsigned char *g_{name}_data;
 // extern const unsigned char *g_{name}_end;
@@ -43,11 +39,6 @@ INCBIN({name}, "{file}");
 // const unsigned char *g_{name}_end;
 // const unsigned int g_{name}_size;
 
-
-
-#ifdef __cplusplus
-{extC_close}
-#endif // __cplusplus
 
 )";
 
