@@ -223,3 +223,30 @@ project "bin2cppstring_incbin"
 	strip()
 
 ---
+
+project "bin2asm_incbin"
+	kind "ConsoleApp"
+
+	includedirs {
+		bx_includedirs,
+		fmtlib_includedirs,
+	}
+
+	files {
+		"./bin2c_incbin/bin2asm_incbin.cpp",
+		"./bin2c_incbin/**.h",
+	}
+
+	links {
+		"bx",
+		"fmtlib",
+	}
+
+	configuration { "mingw-*" }
+		targetextension ".exe"
+
+	configuration {}
+
+	strip()
+
+---
