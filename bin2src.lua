@@ -110,8 +110,10 @@ project "bin2cppstring"
 	strip()
 
 ---
+--- variants relying on u64 to do the embedding
+--- ENDIAN SENSITIVE
 
-project "bin2cppu64vec"
+project "bin2cppvec_u64"
 	kind "ConsoleApp"
 
 	includedirs {
@@ -120,8 +122,35 @@ project "bin2cppu64vec"
 	}
 
 	files {
-		"./bin2cppu64vec/**.cpp",
-		"./bin2cppu64vec/**.h",
+		"./bin2c_u64/bin2cppvec_u64.cpp",
+		"./bin2c_u64/**.h",
+	}
+
+	links {
+		"bx",
+		"fmtlib",
+	}
+
+	configuration { "mingw-*" }
+		targetextension ".exe"
+
+	configuration {}
+
+	strip()
+
+---
+
+project "bin2cppstring_u64"
+	kind "ConsoleApp"
+
+	includedirs {
+		bx_includedirs,
+		fmtlib_includedirs,
+	}
+
+	files {
+		"./bin2c_u64/bin2cppstring_u64.cpp",
+		"./bin2c_u64/**.h",
 	}
 
 	links {
