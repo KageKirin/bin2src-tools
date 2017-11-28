@@ -41,39 +41,30 @@ public:
 
 		bx::writePrintf(m_writer, "#include <string.h>\n\n");
 		bx::writePrintf(m_writer, "extern const char* %s; // for linker happiness\n", m_name.c_str());
-		bx::writePrintf(m_writer, "extern const size_t %s_size; // for linker happiness\n", m_name.c_str());
+		bx::writePrintf(m_writer, "extern const size_t %s_size; // for linker happiness\n\n", m_name.c_str());
 
 		bx::writePrintf(m_writer, "const size_t %s_size = %d;\n", m_name.c_str(), m_buffer.size());
 		bx::writePrintf(m_writer, "const char* %s =\n", m_name.c_str());
 
-		constexpr size_t maxStringSize = 2040;	// 2048, but leaving a of space
+		constexpr size_t maxStringSize = 2040;	// 2048, but leaving a bit of space
 
 
 		auto it = m_buffer.begin();
 		while (it != m_buffer.end())
 		{
 			bx::writePrintf(m_writer, "R\"(");
+
 			while (it != m_buffer.end())
 			{
-				const char c = *it++;
-				if (c == '\n')
-				{
-					bx::writePrintf(m_writer, ")\" \"\\n\" \n");
-					break;
-				}
-				else
-				{
-					bx::writePrintf(m_writer, "%c", c);
-				}
+				bx::writePrintf(m_writer, "%c", *it++);
 
 				if ((std::distance(m_buffer.begin(), it) % maxStringSize) == 0)
 				{
-					bx::writePrintf(m_writer, ")\") +\n");
 					break;
 				}
 			}
+			bx::writePrintf(m_writer, ")\"\n");
 		}
-
 		bx::writePrintf(m_writer, "\n;\n");
 
 
