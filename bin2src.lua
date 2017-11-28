@@ -57,6 +57,7 @@ project "bin2cpparr"
 
 ---
 
+-- std::vector<uint8_t> gen
 project "bin2cppvec"
 	kind "ConsoleApp"
 
@@ -84,6 +85,7 @@ project "bin2cppvec"
 
 ---
 
+-- std::string gen
 project "bin2cppstring"
 	kind "ConsoleApp"
 
@@ -110,6 +112,63 @@ project "bin2cppstring"
 	strip()
 
 ---
+
+-- const char* + const size_t gen
+project "bin2cchar"
+	kind "ConsoleApp"
+
+	includedirs {
+		bx_includedirs,
+		fmtlib_includedirs,
+	}
+
+	files {
+		"./bin2cchar/**.cpp",
+		"./bin2cchar/**.h",
+	}
+
+	links {
+		"bx",
+		"fmtlib",
+	}
+
+	configuration { "mingw-*" }
+		targetextension ".exe"
+
+	configuration {}
+
+	strip()
+
+---
+
+-- constexpr const char* + constexpr const size_t
+project "bin2constexprchar"
+	kind "ConsoleApp"
+
+	includedirs {
+		bx_includedirs,
+		fmtlib_includedirs,
+	}
+
+	files {
+		"./bin2constexprchar/**.cpp",
+		"./bin2constexprchar/**.h",
+	}
+
+	links {
+		"bx",
+		"fmtlib",
+	}
+
+	configuration { "mingw-*" }
+		targetextension ".exe"
+
+	configuration {}
+
+	strip()
+
+---
+
 --- variants relying on u64 to do the embedding
 --- ENDIAN SENSITIVE
 
